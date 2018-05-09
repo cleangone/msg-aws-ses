@@ -3,7 +3,7 @@ package xyz.cleangone.message;
 import com.amazonaws.services.simpleemail.AmazonSimpleEmailService;
 import com.amazonaws.services.simpleemail.AmazonSimpleEmailServiceClientBuilder;
 import com.amazonaws.services.simpleemail.model.*;
-import xyz.cleangone.util.CleangoneEnv;
+import xyz.cleangone.util.env.EnvManager;
 
 public class EmailSender
 {
@@ -12,7 +12,7 @@ public class EmailSender
 
     public EmailSender()
     {
-        client = AmazonSimpleEmailServiceClientBuilder.standard().withRegion(CleangoneEnv.REGION).build();
+        client = AmazonSimpleEmailServiceClientBuilder.standard().withRegion(EnvManager.getEnv().getRegion()).build();
     }
 
     public boolean sendEmail(String to, String subject, String htmlBody, String textBody)
